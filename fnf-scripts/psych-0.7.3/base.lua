@@ -277,6 +277,18 @@ function noteMissPress(direction)                       -- Called when the playe
     -- code
 end
 
+-- ] Pausing
+function onPause()					-- Called when the player pauses.
+	-- code
+	-- Uncomment below line to prevent the player from pausing.
+	-- return Function_Stop
+end
+
+function onResume()					-- Called when the player exits the pause menu.
+	-- code
+end
+
+
 -- ] Events
 function onEvent(id, val1, val2)
     if i = "" then
