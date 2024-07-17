@@ -231,15 +231,14 @@ function formatTime(ms, hasMs)
     if hasMs then st = st..'.'..string.format('%03d', ms - (secTemp * 1000)) end
     return st
 end -- Time formatter: ms to mm:ss
-function setText(tag, text)
-    setProperty(tag..'.text', text)
-end
-function forceRight(spr, x, pad)
-    setProperty(spr..'.x', x - getProperty(spr..'.width') - pad)
-end
-function isEmpty(s)
-   return s == nil or s == ''
-end
+function setText(tag, text) setProperty(tag..'.text', text) end
+function forceRight(spr, x, pad) setProperty(spr..'.x', x - getProperty(spr..'.width') - pad) end
+function forceDown(spr , x, pad) setProperty(spr..'.y', x - getProperty(spr..'.height') - pad) end
+function isEmpty(s) return s == nil or s == '' end
+function clamp(val, low, high) if val < low then return low elseif val > high then return high else return val end end
+function toggle(val) if val == true then return false else return true end end
+function inc(val, delta) val = val + delta end
+function tenary(a,b,c) if a then return b else return c end end
 
 -- Callback functions
 
