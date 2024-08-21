@@ -34,20 +34,10 @@ function hexify(rgb, g, b)
 	--debugPrint(hexed)
 	return hexed
 end -- Conversion of RGB to hex codes
-function ccInterp(elapsed, valueToInterpolate, valueToInterpTo, timescale, upperBound, lowerBound)
-	local scaleOne	= valueToInterpolate
+function ccInterp(elapsed, valueToInterpolate, valueToInterpTo, timescale)
 	local interpFramerate = 240
 	local interpTimescale = timescale or 1
-	local deltaTime = elapsed / ((1/interpFramerate) * interpTimescale)
-	local valueTwee	= valueToInterpTo
-	local differenc = valueTwee - (scaleOne)
-	local maxDiff 	= upperBound	or  math.huge
-	local minDiff	= lowwerBound	or -math.huge
-	if differenc > maxDiff then differenc = maxDiff end
-	if differenc < minDiff then differenc = minDiff end
-	local tween		= scaleOne + (differenc / 50 * deltaTime)
-	local interpolatedValue = tween
-	return interpolatedValue
+	return valueToInterpolate + ((valueToInterpTo - valueToInterpolate) / 50 * (elapsed / ((1/interpFramerate) * interpTimescale)))
 end -- Cubic (sort-of?) interpolator
 function accuracyToRatingString(accuracy, system, adjusted)
     local deez = accuracy * 100
