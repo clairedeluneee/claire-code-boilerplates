@@ -1,5 +1,4 @@
 function ccText(tag, text, size, x, y, camera, bord, align)
-	local tagg = ''..tag
 	local cam = camera or 'other'
 	local bo  = bord or 1
 	local al = align or 'left'
@@ -7,7 +6,7 @@ function ccText(tag, text, size, x, y, camera, bord, align)
 	setProperty(tag..'.size', size)
 	setObjectCamera(tag, cam)
 	setProperty(tag..'.borderSize', bo)
-	setTextAlignment(tag, 'left')
+	setTextAlignment(tag, al)
 	addLuaText(tag)
 end -- Easier text creation
 function ccRect(tag, x, y, wide, tall, color, camera, isTopLeftOrigin)
@@ -19,17 +18,17 @@ function ccRect(tag, x, y, wide, tall, color, camera, isTopLeftOrigin)
 	local TLOrigin = isTopLeftOrigin or false
 	
 	if TLOrigin then
-	setProperty(tag..'.origin.x', 0)
-	setProperty(tag..'.origin.y', 0)
+		setProperty(tag..'.origin.x', 0)
+		setProperty(tag..'.origin.y', 0)
 	end
 
 end -- Easier rectangle creation
 function hexify(rgb, g, b)
 	local hexed = ''
 	if g == nil then
-	hexed = string.format('%x', (rgb[1] * 0x10000) + (rgb[2] * 0x100) + rgb[3])
+		hexed = string.format('%x', (rgb[1] * 0x10000) + (rgb[2] * 0x100) + rgb[3])
 	else
-	hexed = string.format('%x', (rgb * 0x10000) + (g * 0x100) + b)
+		hexed = string.format('%x', (rgb * 0x10000) + (g * 0x100) + b)
 	end
 	--debugPrint(hexed)
 	return hexed
@@ -42,7 +41,6 @@ end -- Cubic (sort-of?) interpolator
 function accuracyToRatingString(accuracy, system, adjusted)
     local deez = accuracy * 100
     local aaccuracy = deez
-    
     if system == 'andro' and adjusted == false then
         if deez == 100 then
             return '☆☆☆☆☆'
@@ -236,7 +234,7 @@ function tenary(a,b,c) if a then return b else return c end end
 function onCreate()                 -- Called as soon as PlayState is initialized. This happens before variables like songName are declared.
     -- code
 end
-function onCreatePost()             -- Called after PlayState is initialized. Variables are declared here.
+function onCreatePost()             -- Called after PlayState is initialized. Variables would have been declared at this point.
     -- code
 end
 function onDestroy()                -- Called on state exit (Going back to main menu / story mode / freeplay).
@@ -262,7 +260,7 @@ function noteMiss(id,direction,notetype,sustain)        -- Called when the playe
 
     end
 end
-function noteMissPress(direction)                       -- Called when the player presses a key when there are no notes to hit. Also known as ghost tapping.
+function noteMissPress(direction)                       -- Called when the player presses a key when there are no notes to hit.
     -- code
 end
 
@@ -280,7 +278,12 @@ end
 
 -- ] Events
 function onEvent(id, val1, val2)
-    if i = "" then
+    if i == "" then
 
     end
+end
+
+function onGameOver() 
+	-- Comment below line to allow dying.
+	return Function_Stop
 end
