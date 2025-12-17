@@ -37,7 +37,7 @@ function ccInterp(elapsed, valueToInterpolate, valueToInterpTo, timescale)
 	local interpFramerate = 240
 	local interpTimescale = timescale or 1
 	return valueToInterpolate + ((valueToInterpTo - valueToInterpolate) / 50 * (elapsed / ((1/interpFramerate) * interpTimescale)))
-end -- Cubic (sort-of?) interpolator
+end -- linear interpolator
 function accuracyToRatingString(accuracy, system, adjusted)
     local deez = accuracy * 100
     local aaccuracy = deez
@@ -278,7 +278,7 @@ end
 
 -- ] Events
 function onEvent(id, val1, val2)
-    if i == "" then
+    if id == "" then
 
     end
 end
